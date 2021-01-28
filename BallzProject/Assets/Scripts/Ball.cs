@@ -5,6 +5,7 @@ using UnityEngine.PlayerLoop;
 
 public class Ball : MonoBehaviour, IColorChangeable
 {
+    // Git test comment
     [SerializeField] float _respawnDelay;
     [SerializeField] bool _primary;
 
