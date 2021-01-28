@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class Ball : MonoBehaviour, IColorChangeable
 {
-    // Git test comment
     [SerializeField] float _respawnDelay;
     [SerializeField] bool _primary;
 
@@ -14,7 +12,6 @@ public class Ball : MonoBehaviour, IColorChangeable
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
     Vector3 _startingPosition;
-    Vector3 _deadBallArea;
     bool _collidedWithBox;
 
     public void ChangeColor(string theme)
@@ -29,7 +26,6 @@ public class Ball : MonoBehaviour, IColorChangeable
         _rb = GetComponent<Rigidbody2D>();
         _startingPosition = transform.position;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _deadBallArea = new Vector3(-5, -5, 0f);
     }
 
     void Start()
@@ -53,15 +49,14 @@ public class Ball : MonoBehaviour, IColorChangeable
 
     void Die()
     {
-        if (!_collidedWithBox) transform.position = _deadBallArea;
-        Reset(_deadBallArea);
+        if (!_collidedWithBox) gameObject.SetActive(false);
     }
 
-    public void Reset(Vector3 position)
+    public void Reset()
     {
         _rb.gravityScale = 0f;
 
-        transform.position = position;
+        transform.position = _startingPosition;
         _rb.velocity = Vector3.zero;
     }
 
