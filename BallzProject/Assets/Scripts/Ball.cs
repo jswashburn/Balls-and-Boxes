@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
+[System.Serializable]
 public class Ball : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _respawnDelay;
@@ -14,10 +15,10 @@ public class Ball : MonoBehaviour, IColorChangeable
     Vector3 _startingPosition;
     bool _collidedWithBox;
 
-    public void ChangeColor(string theme)
+    public void ChangeColor(int theme)
     {
-        var newColor = new ColorThemes(Primary).Colors[theme];
-        _spriteRenderer.color = newColor;
+
+        _spriteRenderer.color = new ColorThemes(Primary).Colors[theme];
     }
 
     void Awake()
@@ -49,7 +50,11 @@ public class Ball : MonoBehaviour, IColorChangeable
 
     void Die()
     {
-        if (!_collidedWithBox) gameObject.SetActive(false);
+        if (!_collidedWithBox)
+        {
+            gameObject.SetActive(false);
+            BallBelt.EnqueueDeadBall(this);
+        }
     }
 
     public void Reset()

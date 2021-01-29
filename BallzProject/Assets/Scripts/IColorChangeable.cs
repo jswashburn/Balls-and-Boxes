@@ -2,5 +2,5 @@
 {   
     bool Primary { get; set; } // The lighter objects
     // TODO: Implement depth system using levels
-    void ChangeColor(string theme);
+    void ChangeColor(int theme);
 }

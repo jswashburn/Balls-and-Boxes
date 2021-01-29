@@ -12,10 +12,9 @@ public class Scroller : MonoBehaviour, IColorChangeable
     Vector3 _startingPosition;
     SpriteRenderer _spriteRenderer;
 
-    public void ChangeColor(string theme)
+    public void ChangeColor(int theme)
     {
-        var newColor = new ColorThemes(Primary).Colors[theme];
-        _spriteRenderer.color = newColor;
+        _spriteRenderer.color = new ColorThemes(Primary).Colors[theme];
     }
 
     void Awake()

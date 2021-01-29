@@ -8,21 +8,14 @@ public class Box : MonoBehaviour, IColorChangeable
     [SerializeField] bool _primary;
     
     public bool Primary { get; set; }
-    int HealthPoints { get; set; }
+
+    int _health;
     
     SpriteRenderer _spriteRenderer;
 
-    public void ChangeColor(string theme)
+    public void ChangeColor(int theme)
     {
-        var newColor = new ColorThemes(Primary).Colors[theme];
-        _spriteRenderer.color = newColor;
-    }
-    
-    public void Die()
-    {
-        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
-
-        HealthPoints = _boxHealth;
+        _spriteRenderer.color = new ColorThemes(Primary).Colors[theme];
     }
 
     void Awake()
@@ -41,13 +34,20 @@ public class Box : MonoBehaviour, IColorChangeable
     {
         transform.position += Time.deltaTime * _fallSpeed * Vector3.down;
 
-        if (HealthPoints <= 0)
+        if (_health <= 0)
             Die();
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.GetComponent<Ball>() != null)
-            HealthPoints--;
+            _health--;
+    }
+
+    public void Die()
+    {
+        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
+
+        _health = _boxHealth;
     }
 }

@@ -10,10 +10,9 @@ public class PlayTimeDisplay : MonoBehaviour, IColorChangeable
     public bool Primary { get; set; }
     public static string PlayTimeDisplayed { get; set; }
     
-    public void ChangeColor(string theme)
+    public void ChangeColor(int theme)
     {
-        var newColor = new ColorThemes(Primary).Colors[theme];
-        _tmpText.color = newColor;
+        _tmpText.color = new ColorThemes(Primary).Colors[theme];
     }
 
     void Awake()

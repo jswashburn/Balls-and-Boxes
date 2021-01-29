@@ -9,10 +9,9 @@ public class HealthDisplay : MonoBehaviour, IColorChangeable
     public static string HealthDisplayed { get; set; }
     public bool Primary { get; set; }
 
-    public void ChangeColor(string theme)
+    public void ChangeColor(int theme)
     {
-        var newColor = new ColorThemes(Primary).Colors[theme];
-        _tmpText.color = newColor;
+        _tmpText.color = new ColorThemes(Primary).Colors[theme];
     }
 
     void Awake()

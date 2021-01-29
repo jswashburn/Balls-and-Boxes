@@ -263,4 +263,4 @@ MonoBehaviour:
   _lineRendererController: {fileID: 5352574538878391746}
   _launchForce: 2000
   _gravityScale: 0.6
-  _maxLineLength: 4
+  _maxLineLength: 9.73

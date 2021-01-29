@@ -20,9 +20,10 @@ public class LineRendererController : MonoBehaviour, IColorChangeable
         _lineRenderer.material.mainTextureScale = new Vector2(1f / _lineRenderer.startWidth, 1.0f);
     }
 
-    public void ChangeColor(string theme)
+    public void ChangeColor(int theme)
     {
         var newColor = new ColorThemes(Primary).Colors[theme];
+        
         _lineRenderer.startColor = newColor;
         _lineRenderer.endColor = new Color32(newColor.r, newColor.g, newColor.b, 0);
     }
