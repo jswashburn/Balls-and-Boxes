@@ -17,7 +17,6 @@ public class Ball : MonoBehaviour, IColorChangeable
 
     public void ChangeColor(int theme)
     {
-
         _spriteRenderer.color = new ColorThemes(Primary).Colors[theme];
     }
 
