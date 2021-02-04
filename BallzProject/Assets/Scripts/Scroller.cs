@@ -5,22 +5,22 @@ using UnityEngine;
 public class Scroller : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _scrollSpeed;
-    [SerializeField] bool _primary;
+    [SerializeField] byte _level;
 
-    public bool Primary { get; set; }
+    public byte Level { get; private set; }
     
     Vector3 _startingPosition;
     SpriteRenderer _spriteRenderer;
 
-    public void ChangeColor(int theme)
+    public void ChangeColor(Color32 color)
     {
-        _spriteRenderer.color = new ColorThemes(Primary).Colors[theme];
+        _spriteRenderer.color = color;
     }
 
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Primary = _primary;
+        Level = _level;
     }
 
     void Start()

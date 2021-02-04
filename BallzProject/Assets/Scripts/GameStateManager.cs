@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    #region Fields and Properties
+    
     [SerializeField] int _defaultStartingHealth;
     [SerializeField] GameObject _boxPrefab;
 
     int CurrentHealth { get; set; }
 
-    int _currentColorThemeCode = 0;
+    byte _currentTheme = 0;
     float _playTime;
     float _difficultyIncreaseTimer;
-    bool _paused;
+    bool _paused = false;
 
     List<IColorChangeable> _colorChangeableObjects;
     MonoBehaviour[] _sceneObjects;
+    ColorThemes _colors;
+
+    #endregion
 
     #region Events
 
@@ -39,17 +44,18 @@ public class GameStateManager : MonoBehaviour
     void Awake()
     {
         _colorChangeableObjects = new List<IColorChangeable>();
+        _colors = new ColorThemes();
     }
 
     void Start()
     {
         CurrentHealth = _defaultStartingHealth;
         HealthDisplay.HealthDisplayed = CurrentHealth.ToString();
-        _paused = false;
     }
 
     void Update()
     {
+        PlayTimer();
         UpdateDifficulty();
 
         if (CurrentHealth <= 0)
@@ -66,13 +72,13 @@ public class GameStateManager : MonoBehaviour
 
     #endregion
 
+    #region Difficulty Update
+
     void UpdateDifficulty()
     {
-        _playTime += Time.deltaTime;
         _difficultyIncreaseTimer += Time.deltaTime;
 
-        PlayTimeDisplay.PlayTimeDisplayed = Convert.ToInt32(_playTime).ToString();
-
+        // Every 15 seconds, "update the difficulty"
         if (_difficultyIncreaseTimer > 15f)
         {
             _difficultyIncreaseTimer = 0f;
@@ -82,39 +88,47 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    void TakeHit()
+    void PlayTimer()
     {
-        CurrentHealth--;
-        HealthDisplay.HealthDisplayed = CurrentHealth.ToString();
+        // Display time in seconds since start of the game
+        _playTime += Time.deltaTime;
+        PlayTimeDisplay.PlayTimeDisplayed = Convert.ToInt32(_playTime).ToString();
     }
 
     void NextColorTheme()
     {
-        UpdateColorChangeables();
-        
-        _currentColorThemeCode = (_currentColorThemeCode + 1) % ColorThemes.numThemes;
+        RefreshColorChangeables();
 
+        // Have each color changeable object change to its next appropriate color
         foreach (var colorChangeable in _colorChangeableObjects)
-        {
-            colorChangeable.ChangeColor(_currentColorThemeCode);
-        }
+            colorChangeable.ChangeColor(
+                _colors.Colors[colorChangeable.Level][_currentTheme]
+                );
 
-        Camera.main.backgroundColor = new ColorThemes(false).Colors[_currentColorThemeCode]; 
+        Camera.main.backgroundColor = _colors.Colors[0][_currentTheme];
+
+        _currentTheme++;
+        _currentTheme %= (byte)(_colors.Colors[0].Count);
     }
     
-    void UpdateColorChangeables()
+    void RefreshColorChangeables()
     {
         _sceneObjects = FindObjectsOfType<MonoBehaviour>();
 
-        // Get all the objects that can change colors
-        foreach (var monoBehavior in _sceneObjects)
+        // Get all the objects in the scene that can change colors
+        foreach (var obj in _sceneObjects)
         {
-            var colorChangeable = monoBehavior.GetComponent<IColorChangeable>();
-            if (colorChangeable != null)
-            {
-                _colorChangeableObjects.Add(colorChangeable);
-            }
+            if (obj is IColorChangeable)
+                _colorChangeableObjects.Add((IColorChangeable)obj);
         }
+    }
+
+    #endregion
+    
+    void TakeHit()
+    {
+        CurrentHealth--;
+        HealthDisplay.HealthDisplayed = CurrentHealth.ToString();
     }
 
     void Pause()

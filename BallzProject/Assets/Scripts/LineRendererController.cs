@@ -3,15 +3,17 @@
 [RequireComponent(typeof(LineRenderer))]
 public class LineRendererController : MonoBehaviour, IColorChangeable
 {
-    LineRenderer _lineRenderer;
-    [SerializeField] bool _primary;
+    [SerializeField] byte _level;
 
-    public bool Primary { get; set; }
+    public byte Level { get; private set; }
+
+    ColorThemes _colorThemes;
+    LineRenderer _lineRenderer;
     
     void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-        Primary = _primary;
+        Level = _level;
     }
 
     void Start()
@@ -20,12 +22,10 @@ public class LineRendererController : MonoBehaviour, IColorChangeable
         _lineRenderer.material.mainTextureScale = new Vector2(1f / _lineRenderer.startWidth, 1.0f);
     }
 
-    public void ChangeColor(int theme)
-    {
-        var newColor = new ColorThemes(Primary).Colors[theme];
-        
-        _lineRenderer.startColor = newColor;
-        _lineRenderer.endColor = new Color32(newColor.r, newColor.g, newColor.b, 0);
+    public void ChangeColor(Color32 color)
+    {    
+        _lineRenderer.startColor = color;
+        _lineRenderer.endColor = new Color32(color.r, color.g, color.b, 0);
     }
     
     public void DrawLine(Vector3 start, Vector3 end)

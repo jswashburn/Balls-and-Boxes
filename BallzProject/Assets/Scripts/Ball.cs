@@ -6,23 +6,23 @@ using UnityEngine;
 public class Ball : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _respawnDelay;
-    [SerializeField] bool _primary;
+    [SerializeField] byte _level;
 
-    public bool Primary { get; set; }
+    public byte Level { get; private set; }
 
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
     Vector3 _startingPosition;
     bool _collidedWithBox;
 
-    public void ChangeColor(int theme)
+    public void ChangeColor(Color32 color)
     {
-        _spriteRenderer.color = new ColorThemes(Primary).Colors[theme];
+        _spriteRenderer.color = color;
     }
 
     void Awake()
     {
-        Primary = _primary;
+        Level = _level;
         _rb = GetComponent<Rigidbody2D>();
         _startingPosition = transform.position;
         _spriteRenderer = GetComponent<SpriteRenderer>();

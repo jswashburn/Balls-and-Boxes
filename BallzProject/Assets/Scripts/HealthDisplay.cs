@@ -4,19 +4,19 @@ using TMPro;
 public class HealthDisplay : MonoBehaviour, IColorChangeable
 {
     [SerializeField] TextMeshProUGUI _tmpText;
-    [SerializeField] bool _primary;
+    [SerializeField] byte _level;
 
     public static string HealthDisplayed { get; set; }
-    public bool Primary { get; set; }
+    public byte Level { get; private set; }
 
-    public void ChangeColor(int theme)
+    public void ChangeColor(Color32 color)
     {
-        _tmpText.color = new ColorThemes(Primary).Colors[theme];
+        _tmpText.color = color;
     }
 
     void Awake()
     {
-        Primary = _primary;
+        Level = _level;
     }
 
     void Update()

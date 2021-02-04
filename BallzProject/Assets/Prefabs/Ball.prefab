@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _respawnDelay: 1
-  _primary: 1
+  _level: 4
 --- !u!120 &5352574538878391748
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f63e01687e3244eabde49e483b0aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _primary: 1
+  _level: 0
 --- !u!114 &5352574538878391749
 MonoBehaviour:
   m_ObjectHideFlags: 0
