@@ -9,16 +9,15 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] int _defaultStartingHealth;
     [SerializeField] GameObject _boxPrefab;
 
-    int CurrentHealth { get; set; }
-
+    List<IColorChangeable> _colorChangeableObjects;
+    MonoBehaviour[] _sceneObjects;
+    ColorThemes _colors;
     byte _currentTheme = 0;
     float _playTime;
     float _difficultyIncreaseTimer;
     bool _paused = false;
 
-    List<IColorChangeable> _colorChangeableObjects;
-    MonoBehaviour[] _sceneObjects;
-    ColorThemes _colors;
+    int CurrentHealth { get; set; }
 
     #endregion
 

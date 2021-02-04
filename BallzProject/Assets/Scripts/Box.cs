@@ -7,10 +7,10 @@ public class Box : MonoBehaviour, IColorChangeable
     [SerializeField] float _xMin, _xMax, _yMin, _yMax;
     [SerializeField] byte _level;
     
-    public byte Level { get; private set; }
-
     int _health;
     SpriteRenderer _spriteRenderer;
+
+    public byte Level { get; private set; }
 
     public void ChangeColor(Color32 color)
     {

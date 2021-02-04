@@ -6,11 +6,11 @@ public class Scroller : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _scrollSpeed;
     [SerializeField] byte _level;
-
-    public byte Level { get; private set; }
     
     Vector3 _startingPosition;
     SpriteRenderer _spriteRenderer;
+
+    public byte Level { get; private set; }
 
     public void ChangeColor(Color32 color)
     {

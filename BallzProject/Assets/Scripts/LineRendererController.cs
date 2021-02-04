@@ -5,10 +5,10 @@ public class LineRendererController : MonoBehaviour, IColorChangeable
 {
     [SerializeField] byte _level;
 
-    public byte Level { get; private set; }
-
     ColorThemes _colorThemes;
     LineRenderer _lineRenderer;
+
+    public byte Level { get; private set; }
     
     void Awake()
     {

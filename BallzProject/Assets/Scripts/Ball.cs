@@ -8,12 +8,12 @@ public class Ball : MonoBehaviour, IColorChangeable
     [SerializeField] float _respawnDelay;
     [SerializeField] byte _level;
 
-    public byte Level { get; private set; }
-
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
     Vector3 _startingPosition;
     bool _collidedWithBox;
+
+    public byte Level { get; private set; }
 
     public void ChangeColor(Color32 color)
     {
