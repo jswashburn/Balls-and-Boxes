@@ -10,7 +10,6 @@ public class Box : MonoBehaviour, IColorChangeable
     public byte Level { get; private set; }
 
     int _health;
-    
     SpriteRenderer _spriteRenderer;
 
     public void ChangeColor(Color32 color)
