@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scroller : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _scrollSpeed;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _level;
     
     Vector3 _startingPosition;
     SpriteRenderer _spriteRenderer;

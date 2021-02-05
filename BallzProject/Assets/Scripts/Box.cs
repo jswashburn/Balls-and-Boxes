@@ -5,7 +5,7 @@ public class Box : MonoBehaviour, IColorChangeable
     [SerializeField] int _boxHealth;
     [SerializeField] float _fallSpeed;
     [SerializeField] float _xMin, _xMax, _yMin, _yMax;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _level;
     
     int _health;
     SpriteRenderer _spriteRenderer;

@@ -4,7 +4,7 @@ using TMPro;
 public class HealthDisplay : MonoBehaviour, IColorChangeable
 {
     [SerializeField] TextMeshProUGUI _tmpText;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _level;
 
     public static string HealthDisplayed { get; set; }
     public byte Level { get; private set; }

@@ -5,7 +5,7 @@ using TMPro;
 public class PlayTimeDisplay : MonoBehaviour, IColorChangeable
 {
     [SerializeField] TextMeshProUGUI _tmpText;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _level;
 
     public byte Level { get; private set; }
     public static string PlayTimeDisplayed { get; set; }

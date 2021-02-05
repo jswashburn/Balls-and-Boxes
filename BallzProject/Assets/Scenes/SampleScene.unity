@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tmpText: {fileID: 90086717}
-  _primary: 1
+  _level: 4
 --- !u!114 &90086717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scrollSpeed: 1
-  _primary: 1
+  _level: 4
 --- !u!1 &403668049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tmpText: {fileID: 2120943273}
-  _primary: 1
+  _level: 4
 --- !u!114 &2120943273
 MonoBehaviour:
   m_ObjectHideFlags: 0

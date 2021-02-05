@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _respawnDelay;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _level;
 
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;

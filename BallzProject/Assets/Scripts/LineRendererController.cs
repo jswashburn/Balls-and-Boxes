@@ -3,7 +3,7 @@
 [RequireComponent(typeof(LineRenderer))]
 public class LineRendererController : MonoBehaviour, IColorChangeable
 {
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _level;
 
     ColorThemes _colorThemes;
     LineRenderer _lineRenderer;
