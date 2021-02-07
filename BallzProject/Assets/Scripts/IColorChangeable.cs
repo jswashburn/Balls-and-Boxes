@@ -2,6 +2,6 @@
 
 public interface IColorChangeable
 {   
-    byte Level { get; }
+    byte Depth { get; }
     void ChangeColor(Color32 color);
 }

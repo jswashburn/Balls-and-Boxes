@@ -5,12 +5,12 @@ public class Box : MonoBehaviour, IColorChangeable
     [SerializeField] int _boxHealth;
     [SerializeField] float _fallSpeed;
     [SerializeField] float _xMin, _xMax, _yMin, _yMax;
-    [Range(0, 4)][SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _depth;
     
     int _health;
     SpriteRenderer _spriteRenderer;
 
-    public byte Level { get; private set; }
+    public byte Depth { get; private set; }
 
     public void ChangeColor(Color32 color)
     {
@@ -20,7 +20,7 @@ public class Box : MonoBehaviour, IColorChangeable
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Level = _level;
+        Depth = _depth;
     }
 
     void Start()

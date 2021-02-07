@@ -3,17 +3,17 @@
 [RequireComponent(typeof(LineRenderer))]
 public class LineRendererController : MonoBehaviour, IColorChangeable
 {
-    [Range(0, 4)][SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _depth;
 
     ColorThemes _colorThemes;
     LineRenderer _lineRenderer;
 
-    public byte Level { get; private set; }
+    public byte Depth { get; private set; }
     
     void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-        Level = _level;
+        Depth = _depth;
     }
 
     void Start()
