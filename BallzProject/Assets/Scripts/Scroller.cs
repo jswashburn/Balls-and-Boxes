@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scroller : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _scrollSpeed;
-    [SerializeField] byte _level;
-
-    public byte Level { get; private set; }
+    [Range(0, 4)][SerializeField] byte _depth;
     
     Vector3 _startingPosition;
     SpriteRenderer _spriteRenderer;
+
+    public byte Depth { get; private set; }
 
     public void ChangeColor(Color32 color)
     {
@@ -20,7 +18,7 @@ public class Scroller : MonoBehaviour, IColorChangeable
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Level = _level;
+        Depth = _depth;
     }
 
     void Start()
@@ -29,6 +27,11 @@ public class Scroller : MonoBehaviour, IColorChangeable
     }
 
     void Update()
+    {
+        ScrollLeft();
+    }
+
+    void ScrollLeft()
     {
         if (transform.position.x <= 0f)
             transform.position = _startingPosition;

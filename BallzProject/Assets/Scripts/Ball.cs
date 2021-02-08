@@ -2,18 +2,18 @@
 using System.Collections;
 using UnityEngine;
 
-[System.Serializable]
 public class Ball : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _respawnDelay;
-    [SerializeField] byte _level;
-
-    public byte Level { get; private set; }
+    [Range(0, 4)][SerializeField] byte _depth;
 
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
     Vector3 _startingPosition;
     bool _collidedWithBox;
+
+    public byte Depth { get; private set; }
+    public bool WasLaunched { get; set; }
 
     public void ChangeColor(Color32 color)
     {
@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour, IColorChangeable
 
     void Awake()
     {
-        Level = _level;
+        Depth = _depth;
         _rb = GetComponent<Rigidbody2D>();
         _startingPosition = transform.position;
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -34,6 +34,7 @@ public class Ball : MonoBehaviour, IColorChangeable
         _collidedWithBox = false;
     }
 
+    // On launch if you dont hit a box by _respawnDelay seconds, ball 'dies'
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.GetComponent<Box>())
@@ -62,6 +63,8 @@ public class Ball : MonoBehaviour, IColorChangeable
 
         transform.position = _startingPosition;
         _rb.velocity = Vector3.zero;
+
+        WasLaunched = false;
     }
 
     IEnumerator DoAfterDelay(Action action, float delay)

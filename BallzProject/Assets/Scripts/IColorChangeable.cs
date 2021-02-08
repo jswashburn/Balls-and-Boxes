@@ -2,7 +2,6 @@
 
 public interface IColorChangeable
 {   
-    byte Level { get; }
-    // TODO: Implement depth system using levels
+    byte Depth { get; }
     void ChangeColor(Color32 color);
 }

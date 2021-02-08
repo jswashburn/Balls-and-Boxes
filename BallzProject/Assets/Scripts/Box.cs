@@ -4,14 +4,14 @@ public class Box : MonoBehaviour, IColorChangeable
 {
     [SerializeField] int _boxHealth;
     [SerializeField] float _fallSpeed;
+    [SerializeField] float _maxFallSpeed;
     [SerializeField] float _xMin, _xMax, _yMin, _yMax;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _depth;
     
-    public byte Level { get; private set; }
-
     int _health;
-    
     SpriteRenderer _spriteRenderer;
+
+    public byte Depth { get; private set; }
 
     public void ChangeColor(Color32 color)
     {
@@ -21,12 +21,13 @@ public class Box : MonoBehaviour, IColorChangeable
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Level = _level;
+        Depth = _depth;
     }
 
     void Start()
     {
-        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
+        SetRandomPosition();
+        SetRandomSpeed();
         Physics2D.IgnoreLayerCollision(9, 9);
     }
 
@@ -46,8 +47,18 @@ public class Box : MonoBehaviour, IColorChangeable
 
     public void Die()
     {
-        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
-
+        SetRandomPosition();
+        SetRandomSpeed();
         _health = _boxHealth;
+    }
+
+    void SetRandomPosition()
+    {
+        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
+    }
+
+    void SetRandomSpeed()
+    {
+        _fallSpeed = Random.Range(1f, _maxFallSpeed);
     }
 }

@@ -1,13 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class PlayTimeDisplay : MonoBehaviour, IColorChangeable
 {
     [SerializeField] TextMeshProUGUI _tmpText;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _depth;
 
-    public byte Level { get; private set; }
+    public byte Depth { get; private set; }
     public static string PlayTimeDisplayed { get; set; }
     
     public void ChangeColor(Color32 color)
@@ -17,7 +16,7 @@ public class PlayTimeDisplay : MonoBehaviour, IColorChangeable
 
     void Awake()
     {
-        Level = _level;
+        Depth = _depth;
     }
 
     void Update()

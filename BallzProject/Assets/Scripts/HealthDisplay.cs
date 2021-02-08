@@ -4,10 +4,10 @@ using TMPro;
 public class HealthDisplay : MonoBehaviour, IColorChangeable
 {
     [SerializeField] TextMeshProUGUI _tmpText;
-    [SerializeField] byte _level;
+    [Range(0, 4)][SerializeField] byte _depth;
 
     public static string HealthDisplayed { get; set; }
-    public byte Level { get; private set; }
+    public byte Depth { get; private set; }
 
     public void ChangeColor(Color32 color)
     {
@@ -16,7 +16,7 @@ public class HealthDisplay : MonoBehaviour, IColorChangeable
 
     void Awake()
     {
-        Level = _level;
+        Depth = _depth;
     }
 
     void Update()

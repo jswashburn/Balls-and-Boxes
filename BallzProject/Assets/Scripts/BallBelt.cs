@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BallBelt : MonoBehaviour
 {
-    [SerializeField] List<Ball> balls;
-    [SerializeField] int _capacity;
+    [SerializeField] byte _capacity;
 
     static Queue<Ball> _inactive;
+
+    void OnEnable()
+    {
+        GameStateManager.OnDifficultyIncrease += RestoreBall;
+    }
 
     void Awake()
     {
@@ -18,15 +22,14 @@ public class BallBelt : MonoBehaviour
     {
         if (_inactive.Count > 0)
         {
-            Ball restoredBall;
-            restoredBall = _inactive.Dequeue();
+            Ball restoredBall = _inactive.Dequeue();
             restoredBall.gameObject.SetActive(true);
             restoredBall.Reset();
         }
     }
 
-    public static void EnqueueDeadBall(Ball ball)
+    public static void EnqueueDeadBall(Ball deadBall)
     {
-        _inactive.Enqueue(ball);
+        _inactive.Enqueue(deadBall);
     }
 }
