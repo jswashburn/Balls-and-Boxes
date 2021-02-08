@@ -4,6 +4,7 @@ public class Box : MonoBehaviour, IColorChangeable
 {
     [SerializeField] int _boxHealth;
     [SerializeField] float _fallSpeed;
+    [SerializeField] float _maxFallSpeed;
     [SerializeField] float _xMin, _xMax, _yMin, _yMax;
     [Range(0, 4)][SerializeField] byte _depth;
     
@@ -25,7 +26,8 @@ public class Box : MonoBehaviour, IColorChangeable
 
     void Start()
     {
-        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
+        SetRandomPosition();
+        SetRandomSpeed();
         Physics2D.IgnoreLayerCollision(9, 9);
     }
 
@@ -45,8 +47,18 @@ public class Box : MonoBehaviour, IColorChangeable
 
     public void Die()
     {
-        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
-
+        SetRandomPosition();
+        SetRandomSpeed();
         _health = _boxHealth;
+    }
+
+    void SetRandomPosition()
+    {
+        transform.position = new Vector3(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax), 0f);
+    }
+
+    void SetRandomSpeed()
+    {
+        _fallSpeed = Random.Range(1f, _maxFallSpeed);
     }
 }

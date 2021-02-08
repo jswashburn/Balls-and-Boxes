@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour, IColorChangeable
     bool _collidedWithBox;
 
     public byte Depth { get; private set; }
+    public bool WasLaunched { get; set; }
 
     public void ChangeColor(Color32 color)
     {
@@ -62,6 +63,8 @@ public class Ball : MonoBehaviour, IColorChangeable
 
         transform.position = _startingPosition;
         _rb.velocity = Vector3.zero;
+
+        WasLaunched = false;
     }
 
     IEnumerator DoAfterDelay(Action action, float delay)
