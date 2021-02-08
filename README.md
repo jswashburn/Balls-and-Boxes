@@ -7,7 +7,7 @@ My unity game 😁
 
 ## Coming Soon 👾
 1. End state
-1. Pause menu
+1. ~~Pause menu~~ ✔
 1. Particle effects
 1. New gameplay mechanics
-1. UI improvements
+1. ~~UI improvements~~ ✔
