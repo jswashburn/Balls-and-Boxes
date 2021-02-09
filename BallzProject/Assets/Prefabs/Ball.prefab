@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5352574538878391748}
   - component: {fileID: 5352574538878391746}
   - component: {fileID: 8449542977649978069}
+  - component: {fileID: 1508039026516698179}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Untagged
@@ -278,12 +279,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3036916a064adaa47991f80ad7c76465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lineRendererController: {fileID: 5352574538878391746}
-  _launchForce: 2000
+  _maxLineLength: 10
+  _launchForce: 1500
   _gravityScale: 0.6
-  _maxLineLength: 24
-  _clickAreaSpriteRenderer: {fileID: 8561292118742206175}
+  _lineRendererController: {fileID: 5352574538878391746}
+  _circleAroundBall: {fileID: 8561292118742206175}
   _depth: 4
+--- !u!61 &1508039026516698179
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5352574538878391805}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 4.6744003, y: 53.967422}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.94, y: 5.94}
+    newSize: {x: 5.94, y: 5.94}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 89.228195, y: 136.82162}
+  m_EdgeRadius: 0
 --- !u!1 &7203358593545369804
 GameObject:
   m_ObjectHideFlags: 0

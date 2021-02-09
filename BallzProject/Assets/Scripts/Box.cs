@@ -7,6 +7,7 @@ public class Box : MonoBehaviour, IColorChangeable
     [SerializeField] float _maxFallSpeed;
     [SerializeField] float _xMin, _xMax, _yMin, _yMax;
     [Range(0, 4)][SerializeField] byte _depth;
+    [SerializeField] bool _menuBox;
     
     int _health;
     SpriteRenderer _spriteRenderer;
@@ -50,6 +51,16 @@ public class Box : MonoBehaviour, IColorChangeable
         SetRandomPosition();
         SetRandomSpeed();
         _health = _boxHealth;
+
+        if (_menuBox)
+            ChangeToRandomColor();
+    }
+
+    void ChangeToRandomColor()
+    {
+        ColorThemes available = new ColorThemes();
+        Color32 color = available.Colors[4][(byte)Random.Range(0, available.Colors.Count - 1)];
+        _spriteRenderer.color = color;
     }
 
     void SetRandomPosition()

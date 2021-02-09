@@ -65,6 +65,7 @@ public class Ball : MonoBehaviour, IColorChangeable
         _rb.velocity = Vector3.zero;
 
         WasLaunched = false;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     IEnumerator DoAfterDelay(Action action, float delay)
