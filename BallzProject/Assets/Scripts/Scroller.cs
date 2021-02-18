@@ -3,6 +3,7 @@
 public class Scroller : MonoBehaviour, IColorChangeable
 {
     [SerializeField] float _scrollSpeed;
+    [SerializeField] float _xResetPoint;
     [Range(0, 4)][SerializeField] byte _depth;
     
     Vector3 _startingPosition;
@@ -33,7 +34,7 @@ public class Scroller : MonoBehaviour, IColorChangeable
 
     void ScrollLeft()
     {
-        if (transform.position.x <= 0f)
+        if (transform.position.x <= _xResetPoint)
             transform.position = _startingPosition;
         else
             transform.position += Time.deltaTime * _scrollSpeed * Vector3.left;

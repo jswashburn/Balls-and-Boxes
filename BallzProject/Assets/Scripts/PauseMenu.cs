@@ -31,10 +31,12 @@ public class PauseMenu : MonoBehaviour, IColorChangeable
             if (!Paused)
             {
                 Pause();
+                ActivatePauseMenu();
             }
             else
             {
                 Resume();
+                DeactivatePauseMenu();
             }
         }
     }
@@ -42,28 +44,26 @@ public class PauseMenu : MonoBehaviour, IColorChangeable
     public void Pause()
     {
         Paused = true;
-        _pauseMenu.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void Resume()
     {
-        Paused = false;
-        _pauseMenu.SetActive(false);
+        Paused = false; 
         Time.timeScale = 1f;
     }
 
-    public void LoadMainMenu(string sceneName)
+    public void ActivatePauseMenu() => _pauseMenu.SetActive(true);
+
+    public void DeactivatePauseMenu() => _pauseMenu.SetActive(false);
+
+    public void LoadMainMenu()
     {
-        SceneManager.LoadScene(sceneName);
-        Time.timeScale = 1f;
-        Paused = false;
+        Resume();
+        SceneManager.LoadScene("MainMenu"); 
     }
 
-    public void QuitGame()
-    {
-        Application.Quit(0);
-    }
+    public void QuitGame() => Application.Quit(0);
 
     public void ChangeColor(Color32 color)
     {

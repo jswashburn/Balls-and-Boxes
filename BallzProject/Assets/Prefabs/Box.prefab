@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 305007237043198261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.5, y: 6, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.07, z: 0}
+  m_LocalScale: {x: 0.07581878, y: 0.1061463, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -146,8 +146,9 @@ MonoBehaviour:
   _boxHealth: 1
   _fallSpeed: 1
   _maxFallSpeed: 2
-  _xMin: 1
-  _xMax: 5
+  _xMin: -3
+  _xMax: 9
   _yMin: 11
-  _yMax: 15
+  _yMax: 21
   _depth: 4
+  _menuBox: 0
