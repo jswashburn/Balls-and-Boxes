@@ -59,8 +59,8 @@ public class PauseMenu : MonoBehaviour, IColorChangeable
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
         Resume();
+        SceneManager.LoadScene("MainMenu"); 
     }
 
     public void QuitGame() => Application.Quit(0);

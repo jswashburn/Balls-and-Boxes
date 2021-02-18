@@ -53,6 +53,14 @@ public class EndMenu : MonoBehaviour, IColorChangeable
         Resume();
     } 
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        LaunchInputManager.Controlable = true;
+        GameStateManager.CurrentHealth = 5;
+        Resume();
+    }
+
     public void Pause()
     {
         Paused = true;
