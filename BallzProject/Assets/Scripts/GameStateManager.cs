@@ -7,10 +7,10 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] int _defaultStartingHealth;
     [SerializeField] GameObject _boxPrefab;
 
-    float _playTime;
-    float _difficultyIncreaseTimer;
+    public float survivedTime = 0;
+    public float difficultyIncreaseTimer = 0;
 
-    int CurrentHealth { get; set; }
+    public static int CurrentHealth { get; set; }
 
     public delegate void GameStateManagerAction();
     public static event GameStateManagerAction OnHealthBelowZero;
@@ -34,30 +34,21 @@ public class GameStateManager : MonoBehaviour
 
     void Update()
     {
-        RecordPlayTime();
+        survivedTime += Time.deltaTime;
+        difficultyIncreaseTimer += Time.deltaTime;
         UpdateDifficulty();
 
         if (CurrentHealth <= 0)
-            OnHealthBelowZero?.Invoke(); // TODO: Game over
+            OnHealthBelowZero?.Invoke();
     }
 
     void UpdateDifficulty()
     {
-        _difficultyIncreaseTimer += Time.deltaTime;
-
-        // Every 15 seconds, trigger a difficulty update
-        if (_difficultyIncreaseTimer > 15f)
+        if (difficultyIncreaseTimer > 15f)
         {
-            _difficultyIncreaseTimer = 0f;
+            difficultyIncreaseTimer = 0f;
             OnDifficultyIncrease?.Invoke();
         }
-    }
-
-    void RecordPlayTime()
-    {
-        // Display time in seconds since start of the game
-        _playTime += Time.deltaTime;
-        PlayTimeDisplay.PlayTimeDisplayed = Convert.ToInt32(_playTime).ToString();
     }
     
     void TakeHit()

@@ -18,6 +18,7 @@ public class LaunchInputManager : MonoBehaviour, IColorChangeable
 
     Color _circleAroundBallStartColor;
     public byte Depth { get; private set; }
+    public static bool Controlable { get; set; } = true;
 
     public void ChangeColor(Color32 color)
     {
@@ -33,7 +34,7 @@ public class LaunchInputManager : MonoBehaviour, IColorChangeable
         _ball = GetComponent<Ball>();
     }
 
-    bool ControlsEnabled() => !PauseMenu.Paused && !_ball.WasLaunched;
+    bool ControlsEnabled() => (!PauseMenu.Paused && !_ball.WasLaunched) && Controlable;
     Vector3 GetForceVector() => _trajectory - transform.position;
 
     void OnMouseDown()

@@ -14,10 +14,10 @@ public class ColorThemes
                 0, // color depth level - 0 is in the background
                 new Dictionary<byte, Color32>()
                 {
-                    { 0, new Color32(7, 25, 42, 255) }, // lemon sapphire
-                    { 1, new Color32(40, 68, 126, 255) }, // retro tipo
+                    { 0, new Color32(7, 25, 42, 255) },     // lemon sapphire
+                    { 1, new Color32(40, 68, 126, 255) },   // retro tipo
                     { 2, new Color32(161, 219, 178, 255) }, // smiling ear to ear
-                    { 3, new Color32(87, 6, 6, 255) } // Nudecolors
+                    { 3, new Color32(87, 6, 6, 255) }       // Nudecolors
                 }
             },
             {
